@@ -1,22 +1,19 @@
+// https://adventofcode.com/2023/day/2
 package main
 
 import (
 	"bufio"
+	_ "embed"
 	"fmt"
-	"os"
 	"strconv"
 	"strings"
 )
 
+//go:embed input.txt
+var input string
+
 func main() {
 	fmt.Println("Day 2")
-
-	file, err := os.Open("input.txt")
-	if err != nil {
-		fmt.Println("Error opening file:", err)
-		return
-	}
-	defer file.Close()
 
 	config := map[string]int{
 		"red":   12,
@@ -27,7 +24,7 @@ func main() {
 	sum := 0
 	powerSum := 0
 
-	scanner := bufio.NewScanner(file)
+	scanner := bufio.NewScanner(strings.NewReader(input))
 	for scanner.Scan() {
 		line := scanner.Text()
 

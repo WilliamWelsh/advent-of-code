@@ -3,21 +3,18 @@ package main
 
 import (
 	"bufio"
+	_ "embed"
 	"fmt"
-	"os"
 	"strconv"
+	"strings"
 	"unicode"
 )
 
+//go:embed input.txt
+var input string
+
 func main() {
 	fmt.Println("Day 1")
-
-	file, err := os.Open("input.txt")
-	if err != nil {
-		fmt.Println("Error opening file:", err)
-		return
-	}
-	defer file.Close()
 
 	sum := 0
 
@@ -33,7 +30,7 @@ func main() {
 		"nine":  "9",
 	}
 
-	scanner := bufio.NewScanner(file)
+	scanner := bufio.NewScanner(strings.NewReader(input))
 	for scanner.Scan() {
 		line := scanner.Text()
 
